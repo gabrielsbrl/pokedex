@@ -1,1 +1,9 @@
-<p>pokemon-details works!</p>
+<header>
+  <button (click)="back()">Voltar</button>
+</header>
+<section class="details-container">
+  <aside>
+    <img [src]="pokemon.sprites?.front_default" [alt]="pokemon.name" width="200">
+  </aside>
+  <p>{{pokemon.name}}</p>
+</section>

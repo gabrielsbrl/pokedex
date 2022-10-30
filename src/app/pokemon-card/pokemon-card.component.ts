@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import PokemonService from '../pokemon.service';
 
 @Component({
@@ -14,7 +15,10 @@ export class PokemonCardComponent implements OnInit {
     url: ''
   };
 
-  constructor(private _pokemonService: PokemonService) { }
+  constructor(
+    private _pokemonService: PokemonService,
+    private _router: Router
+  ) { }
 
   ngOnInit(): void {
     const pokemonId: number = this._getPokemonIdFromURL(this.pokemon.url);
@@ -34,6 +38,10 @@ export class PokemonCardComponent implements OnInit {
         next: (response: any) => this.pokemon = Object.assign(this.pokemon, {}, response),
         error: console.log,
       });
+  }
+
+  public navigatePokemonDetails() {
+    this._router.navigate(['/pokemon-details', this.pokemon.id]);
   }
 
 }
